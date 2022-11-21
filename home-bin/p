@@ -1,0 +1,32 @@
+#!/bin/bash
+
+# Fix this mess.
+# https://stackoverflow.com/questions/7069682/how-to-get-arguments-with-flags-in-bash#21128172
+# That may help, but also FORMATTING
+
+if [ "$1" == "-e" ]; then
+	dir="$PWD"/"$2"
+	media="$dir"/$(ls "$dir" | head -1)
+	
+	if [ "$media" == "$dir"/mplayer.conf ]; then
+		media="$dir"/$(ls "$dir" | head -2 | tail -1)
+	fi
+	
+elif [[ $1 == "new" ]]; then
+    mv /home/baruch/videos/{new,old}
+	media="$PWD/old"
+else
+	media="$PWD/$1"
+fi
+
+mplayer -slave -really-quiet -playlist <(find "$media" | egrep -i '(\.mp3$|\.wav$|\.flac$|\.ogg$|\.m4a$|\.avi$|\.flv$|\.mpeg$|\.mpg$|\.mp4$|\.wmv$|\.mkv$|\.mov$|\.webm$|\.swf$)')
+
+
+confirm "Delete it all?"
+if [ $? == 0 ]; then
+	if [ -f "$media" ]; then rm -f "${media%.*}"*
+	else rm -r "$media" 
+	fi; echo "deleted, bye!"
+else
+	echo "bye!"
+fi

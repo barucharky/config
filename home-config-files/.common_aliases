@@ -1,0 +1,103 @@
+# -- -----------------------------------------
+# Paths and environment variables
+# -- -----------------------------------------
+
+export HEBCAL_CITY="Beer Sheva"
+export CDPATH=.:~:~/documents:~/documents/comics:~/documents/comics/Marvel\ Comics:~/videos
+
+export PATH="$HOME/.linuxbrew/bin:$PATH"
+export MANPATH="$HOME/.linuxbrew/share/man:$MANPATH"
+export INFOPATH="$HOME/.linuxbrew/share/info:$INFOPATH"
+
+export GOPATH=$HOME/repos/go-workspace
+export PATH=$PATH:/usr/local/go/bin:$GOPATH/bin
+
+# After each command, append to the history file and reread it
+export PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND$'\n'}history -a; history -c; history -r"
+
+# Shabbos auto-shutdown attempt
+# [[ $(hebcal -c | grep "Candle lighting:" | cut -d' ' -f1 | grep $(date +"%-m/%-d/%Y")) ]] && export SHABBOS=$(($(hebcal -cT | tail -1 | cut -d' ' -f4 | cut -d':' -f1)+12)):$(hebcal -cT | tail -1 | cut -d' ' -f4 | cut -d':' -f2)
+
+
+# -- -----------------------------------------
+# Aliases
+# -- -----------------------------------------
+
+# navigation
+alias la='ls -AgGh --color='auto''
+alias lh='ls -hs --color='auto''
+alias ff='find / -name $1'
+alias clear='printf "\033c" && echo -e "$(hebcal -Tc) \nVos machstu, $LOGNAME!"'
+alias czm='cd /home/baruch/videos/zee/movies && ls'
+alias cmm='cd /home/baruch/videos/mendel/Movies && ls'
+alias czs='/home/baruch/videos/zee/shows && ls'
+
+alias get='sudo apt install'
+alias rem='sudo apt purge'
+alias U='sudo apt update && sudo apt dist-upgrade'
+alias s='apt-cache search'
+alias journal='vim --cmd "set tw=79" ~/documents/journal/$(date +'%Y_%b_%d_%a').txt'
+alias puppy='echo -e "\n /(●ω●)\ \n"'
+alias speedtest='wget -O /dev/null http://speedtest.wdc01.softlayer.com/downloads/test100.zip'
+alias please='sudo $(history -p !!)'
+alias al='vim ~/.bash_aliases'
+alias c='killall conky -SIGUSR1'
+alias z='toilet -f mono12 -F gay "I love  you     Zehava"'
+alias clock='watch -t -n1 "date +%T|figlet -k"'
+alias jlab='jupyter lab .'
+alias mouse='xinput --disable "FTE1001:00 0B05:0101"'
+alias lf='lftp 192.168.0.19 -p 2121'
+alias tmux='tmux -u'
+
+alias off='bash off'
+
+alias code-go='code /home/baruch/repos/go-workspace/src/github.com/barucharky/w.code-workspace'
+alias code-deep='code ~/repos/coding_deep_dive/w.code-workspace'
+alias code-dl='code ~/videos/dl-log'
+
+le () { ffmpeg -i "$1" 2>&1 | grep Duration | cut -d ' ' -f 3-4 | sed s/,//; }
+
+cs () { cd "$@" && ls; }
+
+mcs() { mkdir -p "$1" && cd "$1"; }
+
+# off () { if [[  $1 == "-r" ]] ; then sudo shutdown -r now ; elif [[ $1 == "-c" ]] ; then sudo shutdown -c; else sudo shutdown -h ${1:-now} ; fi ; }
+
+fv () { awk "/$@/ {getline;print}" ~/videos/dl-log ; }
+
+zee () {
+file="$1"
+mkdir -p /home/baruch/videos/zee/
+mv "$1" /home/baruch/videos/zee/;
+}
+
+= () {
+    calc="${@//p/+}"
+    calc="${calc//x/*}"
+    bc -l <<<"scale=10;$calc"
+}
+
+git-acp () {
+    echo "~-----------------------~"
+    echo "~ Adding...             ~"
+    echo "~                       ~"
+    echo "~                       ~"
+    git add --all
+    echo "~-----------------------~"
+    echo "~ Committing...          ~"
+    echo "~                       ~"
+    echo "~                       ~"
+    git commit -a -m $1
+    echo "~-----------------------~"
+    echo "~ Pushing...            ~"
+    echo "~                       ~"
+    echo "~                       ~"
+    git push
+    echo "Done"
+}
+
+# Things down here aren't very useful and are saved mainly for reference
+
+alias andthen='while true; do if [[ $(ps ax | grep youtube-dl | wc -l) -le 1 ]]; then break; fi; done; '
+
+srt () { ffmpeg -i "$1" "${1%.??.vtt}.srt" && rm "$1" ; }

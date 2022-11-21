@@ -1,0 +1,46 @@
+"B''H
+let mapleader = ","
+"-------------------------------
+"Navigation
+"-------------------------------
+map D scrollFullPageDown
+map U scrollFullPageUp
+map gm fullImageHint
+map gw createHintWindow
+map <Leader>r :restore<Space>
+"-------------------------------
+"Tabs
+"-------------------------------
+map <leader>z closeTabsToLeft
+map <leader>x closeTabsToRight
+map gd :tabdetach<CR>
+map gf rootFrame
+"-------------------------------
+"Links
+"-------------------------------
+map <leader>s :open saved.io/@%
+map a :new duckduckgo<space>
+map ga :new<space>
+map P :new @"<CR>
+"-------------------------------
+"Search engines
+"-------------------------------
+"let searchengine heb_eng_google = ["https://translate.google.com/#auto/iw/", "https://translate.google.com/#auto/iw/%s"]
+let searchengine google_translate = ["https://translate.google.com/#auto/en/", "https://translate.google.com/#auto/en/%s"]
+let searchengine morfix = ["https://www.morfix.co.il/", "https://www.morfix.co.il/%s"]
+let searchengine heb_eng_reverso = ["https://context.reverso.net/translation/hebrew-english/%s"]
+let searchengine eng_heb_reverso = ["https://context.reverso.net/translation/english-hebrew/%s"]
+let searchengine rt = ["https://www.rottentomatoes.com/", "https://www.rottentomatoes.com/search/?search=%s"]
+let searchengine getcomics = ["https://getcomics.info/", "https://getcomics.info/?s=%s"]
+let searchengine reddit = ["https://www.reddit.com/", "https://www.reddit.com/r/%s"]
+let searchengine beeradvocate = ["https://www.beeradvocate.com/", "https://www.beeradvocate.com/search/?q=%s"]
+"-------------------------------
+"completion
+"-------------------------------
+let completionengines = ['google', 'wikipedia', 'youtube', 'imdb', 'amazon', 'google-maps', 'wolframalpha', 'google-image', 'ebay', 'webster', 'wictionary', 'urbandictionary', 'duckduckgo', 'google-finance', 'rt']
+"-------------------------------
+"default
+"-------------------------------
+let defaultengine = "duckduckgo"
+let blacklists = ["https://mail.google.com/*","http://www.mudconnect.com/*","http://localhost/*"]
+let qmark s = ["https://console.cloud.google.com/bigquery?project=data-science-course-226116", "https://github.com/Ylazerson/coding-deep-dive/tree/master/sql/sql-hw-tasks/sql-assignments"]

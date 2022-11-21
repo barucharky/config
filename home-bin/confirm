@@ -1,0 +1,8 @@
+#!/bin/bash
+read -p "${1:-Are you sure? }" -n 1 -r
+echo
+if [[ $REPLY =~ ^[Yy]$ ]]; then
+	    true
+	else
+	   false
+fi

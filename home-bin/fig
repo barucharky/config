@@ -1,0 +1,22 @@
+#!/bin/bash
+
+confstring="#softvol-max=1000\n#volume=50\n#vfm=ffmpeg\n#lavdopts=fast=1:skiploopfilter=all:threads=4\nss="
+
+if [ -n "$1" ]; then
+	if [[ -d "$1" ]];then
+		if [[ ! -a "$1"/mplayer.conf ]]; then
+			echo -e "$confstring" > "$1"/mplayer.conf
+		fi
+		vim "$1"/mplayer.conf
+	else
+		if [[ ! -a "$1.conf" ]]; then
+		echo -e "$confstring"> "$1".conf
+		fi
+		vim "$1".conf
+	fi
+else
+	if [[ ! -a mplayer.conf ]]; then
+		echo -e "$confstring" > mplayer.conf
+	fi	
+	vim mplayer.conf
+fi

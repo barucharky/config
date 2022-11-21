@@ -1,0 +1,20 @@
+ShowDotFiles = 1
+TabTimeout = 0
+
+Terminal = x-terminal-emulator
+TermExec = ${Terminal} -e
+AlwaysInTerm = ssh telnet ftp lynx mc vi vim cat top sudo man info
+
+History = 500
+
+URL_h = x-www-browser '%s'
+URL_man = ${TermExec} 'man %s'
+URL_info = ${TermExec} 'info %s'
+URL_file = exo-open %s
+URL_f = exo-open %s
+URL_g = x-www-browser 'http://www.google.com/search?q=%s'
+URL_gv = x-www-browser 'https://www.google.co.il/search?q=%s&tbm=vid'
+URL_gi = x-www-browser 'http://www.google.com/search?q=%s&tbm=isch'
+URL_m = x-www-browser 'http://www.morfix.co.il/%s'
+URL_d = x-www-browser 'http://duckduckgo.com/?q=%s'
+URL_n = x-www-browser 'https://nethackwiki.com/mediawiki/index.php?search=%s&title=Special%3ASearch&go=Go'
