@@ -1,0 +1,43 @@
+background yes
+use_xft yes
+xftfont Sans:size=8
+xftalpha 1
+update_interval 1.0
+total_run_times 0
+own_window yes
+own_window_transparent yes
+own_window_type desktop
+own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
+double_buffer yes
+minimum_size 200 200
+maximum_width 450
+draw_shades yes
+draw_outline no
+draw_borders no
+draw_graph_borders yes
+default_color 656667
+default_shade_color black
+default_outline_color grey
+alignment bottom_left
+gap_x 12
+gap_y 56
+no_buffers yes
+uppercase no
+cpu_avg_samples 2
+override_utf8_locale no
+
+TEXT
+${font sans-serif:bold:size=8}${rss http://www.chabad.org/tools/rss/zmanim.xml?c=247 60 feed_title}${hr 2}
+${font sans-serif:normal:size=8}
+${rss http://www.chabad.org/tools/rss/zmanim.xml?c=247 60 item_title 0}
+${rss http://www.chabad.org/tools/rss/zmanim.xml?c=247 60 item_title 1}
+${rss http://www.chabad.org/tools/rss/zmanim.xml?c=247 60 item_title 2}
+${rss http://www.chabad.org/tools/rss/zmanim.xml?c=247 60 item_title 3}
+${rss http://www.chabad.org/tools/rss/zmanim.xml?c=247 60 item_title 4}
+${rss http://www.chabad.org/tools/rss/zmanim.xml?c=247 60 item_title 5}
+${rss http://www.chabad.org/tools/rss/zmanim.xml?c=247 60 item_title 6}
+${rss http://www.chabad.org/tools/rss/zmanim.xml?c=247 60 item_title 7}
+${rss http://www.chabad.org/tools/rss/zmanim.xml?c=247 60 item_title 8}
+${rss http://www.chabad.org/tools/rss/zmanim.xml?c=247 60 item_title 9}
+${rss http://www.chabad.org/tools/rss/zmanim.xml?c=247 60 item_title 10}
+${rss http://www.chabad.org/tools/rss/zmanim.xml?c=247 60 item_title 11}
