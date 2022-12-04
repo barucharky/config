@@ -44,4 +44,35 @@ done < "${file}"
 
 ### Double vs. Single brackets in if statements
 
+This is a nuanced issue. Don't investigate too much for this project
+
 https://www.baeldung.com/linux/bash-single-vs-double-brackets
+
+---
+
+### Soft link versus hard link
+
+https://linoxide.com/difference-soft-link-hard-link/
+
+- Soft links can link to a directory, but not an existing directory. 
+- Soft links contain pointers, hard links have actual contents
+
+It doesn't seem necessary to link directories because I'm not backing up entire directories, only the config files that I edit
+
+---
+
+### Handling subdirectories in the .config directory
+
+If the directory doesn't exist, it should be created. I will not be creating linked directories. That only leads to problems. 
+For example, the .config/Code directory has many files that will not be backed up. 
+
+---
+
+
+### Recursion
+
+It will be important to understand bash functions well to get the recursion right
+
+https://linuxize.com/post/bash-functions/
+
+functions can have local variables with the same name as variables outside the function without changing them
