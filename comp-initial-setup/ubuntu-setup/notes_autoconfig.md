@@ -42,6 +42,38 @@ done < "${file}"
 
 ---
 
+### Recursive file looping
+
+```bash
+
+#!/bin/bash
+
+main_dir="/home/baruch/test/config_dirs"
+
+recurse () {
+    for i in *
+        do 
+            if [ -d $i ]
+                then
+                    echo "directory: " $i
+                    cd $i
+                    recurse
+                    cd ..
+            elif [ -f $i ]
+                then
+                    echo "file: " $i
+            elif [ $i == "*" ]
+                then
+                    echo "what is $i?"
+            fi
+    done
+}
+
+cd $main_dir
+recurse
+
+```
+
 ### Double vs. Single brackets in if statements
 
 This is a nuanced issue. Don't investigate too much for this project
@@ -76,3 +108,11 @@ It will be important to understand bash functions well to get the recursion righ
 https://linuxize.com/post/bash-functions/
 
 functions can have local variables with the same name as variables outside the function without changing them
+
+---
+
+### If, elif, else
+
+Very thorough explanation
+
+https://phoenixnap.com/kb/bash-if-statement
