@@ -14,4 +14,7 @@ https://pythongeeks.org/python-os-module/
 
 The working directory is the directory that the python script is located in. Using commands, you can change directories and create new ones.
 
-I don't yet understand the pros and cons of `open` and `fdopen` for creating files. It seems that `open` is simpler to use, so I'll be using that for now
+### File management
+
+It seems that `open` is the best way to create and alter a file, so I'll be using that for now. 
+I'm curious as to why we need to close files after, but that is not critical to this program
