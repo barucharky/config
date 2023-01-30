@@ -24,7 +24,7 @@ import os
 home_dir = pathlib.Path('/home/baruch')
 
 # Set backup_dir to the location of your config files in your repo
-backup_dir = home_dir / 'backup'
+backup_dir = pathlib.Path('/home/baruch/repos/config/config_files')
 exceptions = backup_dir / '.links_ignore'
 
 # Function to check if dir created successfully
