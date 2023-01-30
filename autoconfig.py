@@ -27,10 +27,7 @@ home_dir = pathlib.Path('/home/baruch')
 backup_dir = home_dir / 'backup'
 exceptions = backup_dir / '.links_ignore'
 
-"""## Function to check if dir created successfully
-
-Update to return boolean and indent 4
-"""
+# Function to check if dir created successfully
 
 def check_dir(
     dir: pathlib.PosixPath
@@ -41,6 +38,17 @@ def check_dir(
         return True
     else:
         return False
+
+# Function to check if link created successfully
+
+def check_file(
+    filename: pathlib.PosixPath
+) -> bool:
+
+    if filename.is_file():
+        print(f'{filename} created successfully')
+    else:
+        print("File not found :(")
 
 """# Now the script that will create all the directories and links
 
@@ -55,6 +63,7 @@ def create_link(
     source: pathlib.PosixPath,
     destination: pathlib.PosixPath
 ) -> None:
+
     if str(source) not in exceptions.read_text():
         print("Creating link...")
         os.link(source, destination)
@@ -78,8 +87,8 @@ def make_all(
             make_all(path, destination)
 
       else:
-          if path.relative_to(backup_dir).is_file():
-              if os.stat(path.relative_to(backup_dir)).st_nlink == 1:
+          if (destination / path.relative_to(backup_dir)).is_file():
+              if os.stat(destination / path.relative_to(backup_dir)).st_nlink == 1:
                   print(f"{path.relative_to(backup_dir)} exists, but is not linked. Overwrite? (y/n)")
                   answer = input()
                   if answer == "y" or answer == "Y":
