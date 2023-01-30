@@ -95,7 +95,7 @@ def make_all(
                       path.relative_to(backup_dir).unlink()
                       create_link(path, (destination / path.relative_to(backup_dir)))
               else:
-                  print("Link {path.relative_to(backup_dir)} already exists")
+                  print(f"Link {path.relative_to(backup_dir)} already exists")
           else:
               create_link(path, (destination / path.relative_to(backup_dir)))
 
