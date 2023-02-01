@@ -34,6 +34,7 @@ let searchengine rt = ["https://www.rottentomatoes.com/", "https://www.rottentom
 let searchengine getcomics = ["https://getcomics.info/", "https://getcomics.info/?s=%s"]
 let searchengine reddit = ["https://www.reddit.com/", "https://www.reddit.com/r/%s"]
 let searchengine beeradvocate = ["https://www.beeradvocate.com/", "https://www.beeradvocate.com/search/?q=%s"]
+let searchengine sefaria = ["https://www.sefaria.org/search?q=%s&tab=text&tvar=1&tsort=relevance&svar=1&ssort=relevance"]
 "-------------------------------
 "completion
 "-------------------------------
