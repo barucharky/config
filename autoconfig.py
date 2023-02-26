@@ -92,7 +92,7 @@ def make_all(
                   print(f"{path.relative_to(backup_dir)} exists, but is not linked. Overwrite? (y/n)")
                   answer = input()
                   if answer == "y" or answer == "Y":
-                      path.relative_to(backup_dir).unlink()
+                      (destination / path.relative_to(backup_dir)).unlink()
                       create_link(path, (destination / path.relative_to(backup_dir)))
               else:
                   print(f"Link {path.relative_to(backup_dir)} already exists")
