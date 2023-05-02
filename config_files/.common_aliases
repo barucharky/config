@@ -3,7 +3,7 @@
 # -- -----------------------------------------
 
 export HEBCAL_CITY="Beer Sheva"
-export CDPATH=.:~:~/documents:~/documents/comics:~/documents/comics/Marvel\ Comics:~/videos
+export CDPATH=.:~:~/Documents:~/Documents/comics
 
 export PATH="$HOME/.linuxbrew/bin:$PATH"
 export MANPATH="$HOME/.linuxbrew/share/man:$MANPATH"
