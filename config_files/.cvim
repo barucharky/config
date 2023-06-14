@@ -19,7 +19,7 @@ map gf rootFrame
 "Links
 "-------------------------------
 map <leader>s :open saved.io/@%
-map a :new duckduckgo<space>
+map a :new google<space>
 map ga :new<space>
 map P :new @"<CR>
 "-------------------------------
@@ -42,6 +42,6 @@ let completionengines = ['google', 'wikipedia', 'youtube', 'imdb', 'amazon', 'go
 "-------------------------------
 "default
 "-------------------------------
-let defaultengine = "duckduckgo"
+let defaultengine = "google"
 let blacklists = ["https://mail.google.com/*","http://www.mudconnect.com/*","http://localhost/*"]
 let qmark s = ["https://console.cloud.google.com/bigquery?project=data-science-course-226116", "https://github.com/Ylazerson/coding-deep-dive/tree/master/sql/sql-hw-tasks/sql-assignments"]
