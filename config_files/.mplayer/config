@@ -1,0 +1,47 @@
+# Write your default config options here!
+
+[default]
+use-filedir-conf=1
+nolirc=yes
+heartbeat-cmd="xscreensaver-command -deactivate >&- 2>&- &"
+#heartbeat-cmd="xdotool key shift"
+#stop-xscreensaver="yes"
+fs=yes
+really-quiet=0
+#This makes fast play sound normal pitch
+af=scaletempo
+
+#subtitles
+subfont-osd-scale=2.5
+osd-duration=2000
+subfont-encoding=unicode
+utf8=yes
+sub-fuzziness=1
+
+softvol=yes
+softvol-max=1000
+volume=15
+volstep=1
+#af=pan=2:'1:0':'0:1':'0.7:0':'0:0.7':'0.5:0.5'
+#af=equalizer=0.0:0.0:0.0:0.0:0.0:0.0:0.0:0.0:0.0:0.0
+#This sets the postprocessing into overdrive using all possible spare cpu cycles to make the movie look better. I've never seen it work
+#autoq=100
+#vf=pp=de,hqdn3d
+#
+#This, however, seems to work great:
+#vfm=ffmpeg
+#lavdopts=fast=1:skiploopfilter=all:threads=4
+vo=xv
+pausing=2
+
+[extension.mp3]
+profile-desc="for .mp3 files"
+#softvol=no
+volume=10
+really-quiet="0"
+noquiet=1
+
+#[protocol.dvdnav]
+#profile-desc="Profil für dvdnav://-Streams"
+#profile=protocol.dvd
+#mouse-movements=yes
