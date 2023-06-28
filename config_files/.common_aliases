@@ -6,6 +6,7 @@ export HEBCAL_CITY="Beer Sheva"
 export CDPATH=.:~:~/Documents:~/Documents/comics
 
 export PATH="$HOME/.linuxbrew/bin:$PATH"
+export PATH="$HOME/bin:$PATH"
 export MANPATH="$HOME/.linuxbrew/share/man:$MANPATH"
 export INFOPATH="$HOME/.linuxbrew/share/info:$INFOPATH"
 
