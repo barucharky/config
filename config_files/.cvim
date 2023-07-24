@@ -14,13 +14,14 @@ map <Leader>r :restore<Space>
 map <leader>z closeTabsToLeft
 map <leader>x closeTabsToRight
 map gd :tabdetach<CR>
+map ga :tabattach<space>
 map gf rootFrame
 "-------------------------------
 "Links
 "-------------------------------
 map <leader>s :open saved.io/@%
 map a :new google<space>
-map ga :new<space>
+map A :new<space>
 map P :new @"<CR>
 "-------------------------------
 "Search engines
