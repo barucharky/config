@@ -37,6 +37,7 @@ def check_dir(
         print(f'{dir} created successfully')
         return True
     else:
+        print("Directory not created :(")
         return False
 
 # Function to check if link created successfully
@@ -47,8 +48,10 @@ def check_file(
 
     if filename.is_file():
         print(f'{filename} created successfully')
+        return True
     else:
-        print("File not found :(")
+        print("File not created :(")
+        return False
 
 """# Now the script that will create all the directories and links
 
