@@ -21,7 +21,8 @@ map gf rootFrame
 "-------------------------------
 map <leader>s :open saved.io/@%
 map a :new google<space>
-map A :new<space>
+map <leader>a :new<space>
+map A :open google<space>
 map P :new @"<CR>
 "-------------------------------
 "Search engines
