@@ -25,7 +25,7 @@ home_dir = pathlib.Path('/home/baruch')
 
 # Set backup_dir to the location of your config files in your repo
 backup_dir = pathlib.Path('/home/baruch/repos/config/config_files')
-exceptions = backup_dir / '.links_ignore'
+ignore = backup_dir / '.path_ignore_file'
 
 # Function to check if dir created successfully
 
@@ -67,8 +67,8 @@ def create_link(
     destination: pathlib.PosixPath
 ) -> None:
 
-    if str(source) not in exceptions.read_text():
-        print("Creating link...")
+    if str(source) not in ignore.read_text():
+        print("path_ignore_file link...")
         os.link(source, destination)
         check_file(destination)
     else:
@@ -82,8 +82,8 @@ def make_all(
   for path in sorted(source.glob('*')):
 
       if path.is_dir():
-        if not str(destination / path.relative_to(backup_dir)) in exceptions.read_text():
-            if not (destination / path.relative_to(backup_dir)).is_dir():
+        if not str(destination / path.relative_to(backup_dir)) in ignore.read_text():
+            if notpath_ignore_file / path.relative_to(backup_dir)).is_dir():
                 print(f"making directory for {path}")
                 (destination / path.relative_to(backup_dir)).mkdir()
                 check_dir(destination / path.relative_to(backup_dir))
