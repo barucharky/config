@@ -21,11 +21,17 @@ import os
 # Your config files must exist in your repo in the same file structure as they will appear in your home directory
 
 # Set home_dir to your home directory where you want the links to be created
-home_dir = pathlib.Path('/home/baruch')
+class Settings(BaseSettings):
+    HOME_DIR: pathlib.PosixPath
+    HOME_CONFIG: pathlib.PosixPath
+    BACKUP_DIR: pathlib.PosixPath
+    CONFIG_DIR: pathlib.PosixPath
+    IGNORE: pathlib.PosixPath
 
-# Set backup_dir to the location of your config files in your repo
-backup_dir = pathlib.Path('/home/baruch/repos/config/config_files')
-ignore = backup_dir / '.path_ignore_file'
+    class Config:
+        env_file = '.env'
+
+settings = Settings()
 
 # Function to check if dir created successfully
 
@@ -75,31 +81,37 @@ def create_link(
         print(f"{source} is in exceptions list")
 
 def make_all(
-    source: pathlib.PosixPath, 
+    source: pathlib.PosixPath,
     destination: pathlib.PosixPath
 ) -> None:
 
   for path in sorted(source.glob('*')):
 
+      working_path = (destination / path.relative_to(settings.BACKUP_DIR))
+
       if path.is_dir():
-        if not str(destination / path.relative_to(backup_dir)) in ignore.read_text():
-            if notpath_ignore_file / path.relative_to(backup_dir)).is_dir():
-                print(f"making directory for {path}")
-                (destination / path.relative_to(backup_dir)).mkdir()
-                check_dir(destination / path.relative_to(backup_dir))
-            make_all(path, destination)
+          if not str(working_path) in settings.IGNORE.read_text():
+              if not (working_path).is_dir():
+                  print(f"making directory for {path}")
+                  (working_path).mkdir()
+                  check_dir(working_path)
+
+              make_all(path, destination)
+          
+          else:
+              print(f'{working_path} ignored')
 
       else:
-          if (destination / path.relative_to(backup_dir)).is_file():
-              if os.stat(destination / path.relative_to(backup_dir)).st_nlink == 1:
-                  print(f"{path.relative_to(backup_dir)} exists, but is not linked. Overwrite? (y/n)")
+          if path.relative_to(settings.BACKUP_DIR).is_file():
+              if os.stat(path.relative_to(settings.BACKUP_DIR)).st_nlink == 1:
+                  print(f"{path.relative_to(settings.BACKUP_DIR)} exists, but is not linked. Overwrite? (y/n)")
                   answer = input()
                   if answer == "y" or answer == "Y":
-                      (destination / path.relative_to(backup_dir)).unlink()
-                      create_link(path, (destination / path.relative_to(backup_dir)))
+                      path.relative_to(settings.BACKUP_DIR).unlink()
+                      create_link(path, (working_path))
               else:
-                  print(f"Link {path.relative_to(backup_dir)} already exists")
+                  print("Link {path.relative_to(settings.BACKUP_DIR)} already exists")
           else:
-              create_link(path, (destination / path.relative_to(backup_dir)))
+              create_link(path, (working_path))
 
 make_all(backup_dir, home_dir)
