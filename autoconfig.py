@@ -39,12 +39,12 @@ def check_dir(
     dir: pathlib.PosixPath
 ) -> bool:
 
-    if dir.is_dir():
-        print(f'{dir} created successfully')
-        return True
-    else:
-        print("Directory not created :(")
-        return False
+  if dir.is_dir():
+      print(f'{dir} created successfully')
+      return True
+  else:
+      print(f'{dir} not created :)')
+      return False
 
 # Function to check if link created successfully
 
@@ -56,7 +56,7 @@ def check_file(
         print(f'{filename} created successfully')
         return True
     else:
-        print("File not created :(")
+        print(f'{filename} not created :(')
         return False
 
 """# Now the script that will create all the directories and links
@@ -78,7 +78,7 @@ def create_link(
         os.link(source, destination)
         check_file(destination)
     else:
-        print(f"{source} is in exceptions list")
+        print(f"{source} is in path ignore list")
 
 def make_all(
     source: pathlib.PosixPath,
@@ -99,7 +99,7 @@ def make_all(
               make_all(path, destination)
           
           else:
-              print(f'{working_path} ignored')
+              print(f'{working_path} is in path ignore list')
 
       else:
           if path.relative_to(settings.BACKUP_DIR).is_file():
@@ -114,4 +114,4 @@ def make_all(
           else:
               create_link(path, (working_path))
 
-make_all(backup_dir, home_dir)
+make_all(settings.BACKUP_DIR, settings.HOME_DIR)
