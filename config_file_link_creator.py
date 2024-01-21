@@ -2,19 +2,16 @@
 
 # config-file-link-creator
 
-import pathlib
+from pathlib import Path
+from pydantic_settings import BaseSettings
+from typing import List, Optional
 import os
 import filecmp
 
-from pydantic import BaseSettings, BaseModel
-from typing import List, Optional
-
 class Settings(BaseSettings):
-    HOME_DIR: pathlib.PosixPath
-    HOME_CONFIG: pathlib.PosixPath
-    BACKUP_DIR: pathlib.PosixPath
-    CONFIG_DIR: pathlib.PosixPath
-    IGNORE: pathlib.PosixPath
+    HOME_DIR: str
+    BACKUP_DIR: str
+    IGNORE: str
 
     class Config:
         env_file = '.env'
@@ -25,7 +22,7 @@ settings = Settings()
 
 # Check if directory was created
 def check_dir(
-    dir: pathlib.PosixPath
+    dir: Path
 ):
 
   if dir.is_dir():
@@ -60,21 +57,17 @@ def check_files(dir):
       if file.is_file():
           print(f'{file}: {file.read_text()}')
 
-# Bring contents of path_ignore_file into a list of PosixPaths
-class Paths(BaseModel):
-    paths: List[pathlib.PosixPath] = None
+# Bring contents of path_ignore_file into a list of Paths
 
 with open(settings.IGNORE) as file:
-    path_ignore_list = Paths(
-        paths = [line.rstrip() for line in file]
-        )
+    path_ignore_list = [Path(line.rstrip()) for line in file]
 
 # Check the path and create the link or directory as appropriate
 
 def create_path(
-    source_path: pathlib.PosixPath,
-    destination_path: pathlib.PosixPath,
-    path_ignore_list: List[pathlib.PosixPath]
+    source_path: Path,
+    destination_path: Path,
+    path_ignore_list: List[Path]
 ) -> bool:
 
     if source_path not in path_ignore_list:
@@ -122,9 +115,9 @@ def create_path(
 
 # Create all the paths recursively
 def create_all_paths(
-    source_path: pathlib.PosixPath,
-    destination_path: pathlib.PosixPath,
-    path_ignore_list: pathlib.PosixPath
+    source_path: Path,
+    destination_path: Path,
+    path_ignore_list: Path
 ) -> None:
 
     for path in sorted(source_path.glob('*')):
@@ -134,4 +127,4 @@ def create_all_paths(
         if create_path(path, working_path, path_ignore_list):
             create_all_paths(path, destination_path, path_ignore_list)
 
-create_all_paths(settings.BACKUP_DIR, settings.HOME_DIR, path_ignore_list.paths)
+create_all_paths(Path(settings.BACKUP_DIR), Path(settings.HOME_DIR), path_ignore_list)
