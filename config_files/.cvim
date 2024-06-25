@@ -8,6 +8,7 @@ map U scrollFullPageUp
 map gm fullImageHint
 map gw createHintWindow
 map <Leader>r :restore<Space>
+set smoothscroll
 "-------------------------------
 "Tabs
 "-------------------------------
@@ -38,6 +39,7 @@ let searchengine reddit = ["https://www.reddit.com/", "https://www.reddit.com/r/
 let searchengine beeradvocate = ["https://www.beeradvocate.com/", "https://www.beeradvocate.com/search/?q=%s"]
 let searchengine sefaria = ["https://www.sefaria.org/search?q=%s&tab=text&tvar=1&tsort=relevance&svar=1&ssort=relevance"]
 let searchengine aliexpress = ["https://www.aliexpress.com/", "https://www.aliexpress.com/w/wholesale-%s.html"]
+let searchengine piratebay = ["https://thepiratebay.org/", "https://thepiratebay.org/search.php?q=%s"]
 "-------------------------------
 "completion
 "-------------------------------

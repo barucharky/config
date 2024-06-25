@@ -19,7 +19,7 @@ utf8=yes
 sub-fuzziness=1
 
 softvol=yes
-softvol-max=1000
+softvol-max=2000
 volume=15
 volstep=1
 #af=pan=2:'1:0':'0:1':'0.7:0':'0:0.7':'0.5:0.5'
